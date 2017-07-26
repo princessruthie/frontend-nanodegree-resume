@@ -85,9 +85,10 @@ function logClicks(x,y) {
   console.log('x location: ' + x + '; y location: ' + y);
 }
 
-$(document).click(function(loc) {
-  // your code goes here!
-});
+$(document).click(function(lock){
+  logClicks(event.pageX, event.pageY);
+  logClicks(lock.pageX, lock.pageY);
+})
 
 
 
@@ -178,6 +179,7 @@ function initializeMap() {
     // hmmmm, I wonder what this is about...
     google.maps.event.addListener(marker, 'click', function() {
       // your code goes here!
+
     });
 
     // this is where the pin actually gets added to the map.

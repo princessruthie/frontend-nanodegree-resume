@@ -2,8 +2,13 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 
+// $(document).click(function(loc){
+//
+// });
+
 var bio = {
-  "name": "Princess",
+  "firstName": "Princess",
+  "lastName": "Ruthie",
   "role": "Web Developer",
   "contacts": {
   "email":"missruthie@gmail.com",
@@ -15,6 +20,10 @@ var bio = {
   "skills": [
     "awesomeness","RWD","JavaScript"]
 };
+
+var inName = function(){
+  return (bio.firstName + " " + bio.lastName.toUpperCase());
+}
 
 // if (bio.skills){
 //   $("#header").append(HTMLskillsStart);
@@ -41,6 +50,15 @@ var educationJson = {
     }
   ]
 };
+
+function displayEducation(){
+  for (var i = 0; i<educationJson.schools.length; i++){
+    $("#education").append(HTMLschoolStart);
+    $(".education-entry:last").append("test " + i);
+
+  }
+}
+displayEducation();
 
 var employmentHistory = {
   "workOne": {
@@ -70,27 +88,49 @@ var employmentHistory = {
 // }
 
 var projects = {
-	"udacity": [{
+	"projects": [{
 			"name": "js1",
-			"skillLearned": "JavaScript"
+			"skillLearned": "JavaScript",
+      "projectDates": "2017",
+      "projectTitle": "placeholder",
+      "projectImage": "images/fry.jpg"
 		},
 		{
 			"name": "html1",
-			"skillLearned": "html"
+			"skillLearned": "html",
+      "projectDates": "2017",
+      "projectTitle": "placeholder",
+      "projectImage": "images/fry.jpg"
 		}
 	]
 };
 
+projects.display = function(){
+  for (var i = 0; i<projects.projects.length; i++){
+        $("#projects").append(HTMLprojectStart);
 
-
-var education = {
-  "school":"Georgia Tech",
-  "yearsAttended":"2017-2019",
-  "city":"Atlanta"
+  }
 }
 
+// projects.display = function(){
+//   for(var project in projects.projects){
+//     $("#projects").append(HTMLprojectStart);
+//     var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[0]);
+//     $(".project-entry:last").append(formattedTitle);
+//   }
+// }
 
-$("#education").append(HTMLschoolStart).append(education.school);
+projects.display();
+
+
+// var education = {
+//   "school":"Georgia Tech",
+//   "yearsAttended":"2017-2019",
+//   "city":"Atlanta"
+// }
+//
+//
+// $("#education").append(HTMLschoolStart).append(education.school);
 /*
 // var HTMLschoolStart = '<div class="education-entry"></div>';
 // var HTMLschoolName = '<a href="#">%data%';
@@ -103,7 +143,7 @@ $("#education").append(HTMLschoolStart).append(education.school);
 
 
 var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedName = HTMLheaderName.replace("%data%", bio.name);
+var formattedName = HTMLheaderName.replace("%data%", inName());
 
 var formattedPhotUrl = HTMLbioPic.replace("%data%", bio.photoUrl);
 var formattedMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
@@ -122,10 +162,11 @@ for (var key in bio.contacts){
   $("#topContacts").append(formattedContact);
 };
 
-$("#workExperience").append(HTMLworkStart);
 
-function displayWord(){
+function displayWork(){
+
   for (var key in employmentHistory){
+    $("#workExperience").append(HTMLworkStart);
     /*
     //Uncaught TypeError: Cannot read property 'position' of undefined:
     console.log(employmentHistory[workItem].employer);
@@ -138,7 +179,8 @@ function displayWord(){
     var formattedDates = HTMLworkDates.replace("%data%", employmentHistory[key].yearsWorked);
     var formattedLocation = HTMLworkLocation.replace("%data%", employmentHistory[key].city);
     var formattedDescription = HTMLworkDescription.replace("%data%", employmentHistory[key].description);
-    $("#workExperience").append(consolidatedEmpoyerPosition).append(formattedDates).append(formattedLocation)
+    $(".work-entry:last").append(consolidatedEmpoyerPosition).append(formattedDates).append(formattedLocation)
     .append(formattedDescription);
   };
 }
+displayWork();
