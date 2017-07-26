@@ -16,18 +16,16 @@ var bio = {
     "awesomeness","RWD","JavaScript"]
 };
 
-if (bio.skills){
-  // console.log("mad skills");
-
-  $("#header").append(HTMLskillsStart);
-  // var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
-
-  bio.skills.forEach(function(item){
-    $("#skills").append(HTMLskills.replace("%data%", item));
-  });
-
-    console.log(bio.skills);
-};
+// if (bio.skills){
+//   $("#header").append(HTMLskillsStart);
+//   // var HTMLskills = '<li class="flex-item"><span class="white-text">%data%</span></li>';
+//
+//   bio.skills.forEach(function(item){
+//     $("#skills").append(HTMLskills.replace("%data%", item));
+//   });
+//
+//     console.log(bio.skills);
+// };
 
 var educationJson = {
   "schools":[
@@ -65,11 +63,11 @@ var employmentHistory = {
 // var HTMLworkEmployer = '<a href="#">%data%';
 // var HTMLworkTitle = ' - %data%</a>';
 
-for (index in employmentHistory){
-  $("#workExperience").append(HTMLworkStart);
-  console.log(index);
-  $("#workExperience").append(HTMLworkTitle.replace("%data%", employmentHistory[index].position));
-}
+// for (index in employmentHistory){
+//   $("#workExperience").append(HTMLworkStart);
+//   console.log(index);
+//   $("#workExperience").append(HTMLworkTitle.replace("%data%", employmentHistory[index].position));
+// }
 
 var projects = {
 	"udacity": [{
@@ -126,19 +124,21 @@ for (var key in bio.contacts){
 
 $("#workExperience").append(HTMLworkStart);
 
-for (var key in employmentHistory){
-  /*
-  //Uncaught TypeError: Cannot read property 'position' of undefined:
-  console.log(employmentHistory[workItem].employer);
-  console.log(employmentHistory.workItem.employer);
-  */
-  var formattedEmployer = HTMLworkEmployer.replace("%data%", employmentHistory[key].employer);
-  console.log(formattedEmployer);
-  var formattedTitle = HTMLworkTitle.replace("%data%", employmentHistory[key].position);
-  var consolidatedEmpoyerPosition = formattedEmployer+formattedTitle;
-  var formattedDates = HTMLworkDates.replace("%data%", employmentHistory[key].yearsWorked);
-  var formattedLocation = HTMLworkLocation.replace("%data%", employmentHistory[key].city);
-  var formattedDescription = HTMLworkDescription.replace("%data%", employmentHistory[key].description);
-  $("#workExperience").append(consolidatedEmpoyerPosition).append(formattedDates).append(formattedLocation)
-  .append(formattedDescription);
-};
+function displayWord(){
+  for (var key in employmentHistory){
+    /*
+    //Uncaught TypeError: Cannot read property 'position' of undefined:
+    console.log(employmentHistory[workItem].employer);
+    console.log(employmentHistory.workItem.employer);
+    */
+    var formattedEmployer = HTMLworkEmployer.replace("%data%", employmentHistory[key].employer);
+    console.log(formattedEmployer);
+    var formattedTitle = HTMLworkTitle.replace("%data%", employmentHistory[key].position);
+    var consolidatedEmpoyerPosition = formattedEmployer+formattedTitle;
+    var formattedDates = HTMLworkDates.replace("%data%", employmentHistory[key].yearsWorked);
+    var formattedLocation = HTMLworkLocation.replace("%data%", employmentHistory[key].city);
+    var formattedDescription = HTMLworkDescription.replace("%data%", employmentHistory[key].description);
+    $("#workExperience").append(consolidatedEmpoyerPosition).append(formattedDates).append(formattedLocation)
+    .append(formattedDescription);
+  };
+}
