@@ -89,18 +89,18 @@ var employmentHistory = {
 
 var projects = {
 	"projects": [{
-			"name": "js1",
 			"skillLearned": "JavaScript",
       "projectDates": "2017",
-      "projectTitle": "placeholder",
-      "projectImage": "images/fry.jpg"
-		},
+      "projectTitle": "placeholder1",
+      "projectImage": "images/fry.jpg",
+      "projectDescription": "made first stuff"
+    },
 		{
-			"name": "html1",
 			"skillLearned": "html",
       "projectDates": "2017",
-      "projectTitle": "placeholder",
-      "projectImage": "images/fry.jpg"
+      "projectTitle": "placeholder2",
+      "projectImage": "images/fry.jpg",
+      "projectDescription": "made stuff"
 		}
 	]
 };
@@ -108,7 +108,15 @@ var projects = {
 projects.display = function(){
   for (var i = 0; i<projects.projects.length; i++){
         $("#projects").append(HTMLprojectStart);
+        var project = projects.projects[i];
+        var formattedTitle = HTMLprojectTitle.replace("%data%", project.projectTitle);
+        var formattedDates = HTMLprojectDates.replace("%data%", project.projectDates);
+        var formattedDescription = HTMLprojectDescription.replace("%data%", project.projectDescription);
+        var formattedPhotUrl = HTMLprojectImage.replace("%data%", project.projectImage);
+        console.log(project.projectTitle);
 
+        $(".project-entry:last").append(formattedTitle).append(formattedDates)
+        .append(formattedDescription).append(formattedPhotUrl);
   }
 }
 
@@ -184,3 +192,5 @@ function displayWork(){
   };
 }
 displayWork();
+
+$("#mapDiv").append(googleMap);
