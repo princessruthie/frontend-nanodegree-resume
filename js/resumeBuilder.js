@@ -14,7 +14,7 @@ var bio = {
   "email":"missruthie@gmail.com",
   "twitter":"theOnlyRuthie",
   "github": "princessRuthie",
-},
+  "location": "Philadelphia"},
   "photoUrl":"images/fry.jpg",
   "welcomeMessage": "lorem ipsum",
   "skills": [
