@@ -123,32 +123,42 @@ var education = {
 
 education.display();
 
-var employmentHistory = {
-  "workOne": {
-    "position": "Research Technologist",
-    "employer": "Thomas Jefferson University",
-    "yearsWorked": "2016-2018",
-    "city": "Philadelphia",
-    "description": "do stuff",
-  },
-  "workTwo": {
-    "position": "Researcher",
-    "employer": "Thomas Jefferson University",
-    "yearsWorked": "2015-2016",
-    "city": "Philadelphia",
-    "description": "do other stuff",
+var work = {
+  "jobs": [{
+      "employer": "Thomas Jefferson University",
+      "title": "Research Technologist",
+      "location": "Philadelphia",
+      "dates": "2016-2018",
+      "description": "do stuff",
+    },
+    {
+      "employer": "Thomas Jefferson University",
+      "title": "Researcher",
+      "location": "Philadelphia",
+      "dates": "2015-2016",
+      "description": "do other stuff",
+    }
+  ],
+  "display": function() {
+    var currentEntry;
+    for (var i = 0; i < work.jobs.length; i++) {
+      var currentJob = work.jobs[i];
+      $("#workExperience").append(HTMLworkStart);
+      currentEntry = $("#workExperience:last");
+      var formattedEmployer = HTMLworkEmployer.replace("%data%", currentJob.employer);
+      console.log(formattedEmployer);
+      var formattedTitle = HTMLworkTitle.replace("%data%", currentJob.title);
+      var consolidatedEmpoyerPosition = formattedEmployer + formattedTitle;
+      var formattedDates = HTMLworkDates.replace("%data%", currentJob.dates);
+      var formattedLocation = HTMLworkLocation.replace("%data%", currentJob.location);
+      var formattedDescription = HTMLworkDescription.replace("%data%", currentJob.description);
+      $(".work-entry:last").append(consolidatedEmpoyerPosition).append(formattedDates).append(formattedLocation)
+        .append(formattedDescription);
+    }
   }
 };
 
-// var HTMLworkStart = '<div class="work-entry"></div>';
-// var HTMLworkEmployer = '<a href="#">%data%';
-// var HTMLworkTitle = ' - %data%</a>';
-
-// for (index in employmentHistory){
-//   $("#workExperience").append(HTMLworkStart);
-//   console.log(index);
-//   $("#workExperience").append(HTMLworkTitle.replace("%data%", employmentHistory[index].position));
-// }
+work.display();
 
 var projects = {
   "projects": [{
@@ -192,49 +202,5 @@ projects.display = function() {
 // }
 
 projects.display();
-
-
-// var education = {
-//   "school":"Georgia Tech",
-//   "yearsAttended":"2017-2019",
-//   "city":"Atlanta"
-// }
-//
-//
-// $("#education").append(HTMLschoolStart).append(education.school);
-/*
-// var HTMLschoolStart = '<div class="education-entry"></div>';
-// var HTMLschoolName = '<a href="#">%data%';
-// var HTMLschoolDegree = ' -- %data%</a>';
-// var HTMLschoolDates = '<div class="date-text">%data%</div>';
-// var HTMLschoolLocation = '<div class="location-text">%data%</div>';
-// var HTMLschoolMajor = '<em><br>Major: %data%</em>';
-
-*/
-
-
-
-
-function displayWork() {
-
-  for (var key in employmentHistory) {
-    $("#workExperience").append(HTMLworkStart);
-    /*
-    //Uncaught TypeError: Cannot read property 'position' of undefined:
-    console.log(employmentHistory[workItem].employer);
-    console.log(employmentHistory.workItem.employer);
-    */
-    var formattedEmployer = HTMLworkEmployer.replace("%data%", employmentHistory[key].employer);
-    console.log(formattedEmployer);
-    var formattedTitle = HTMLworkTitle.replace("%data%", employmentHistory[key].position);
-    var consolidatedEmpoyerPosition = formattedEmployer + formattedTitle;
-    var formattedDates = HTMLworkDates.replace("%data%", employmentHistory[key].yearsWorked);
-    var formattedLocation = HTMLworkLocation.replace("%data%", employmentHistory[key].city);
-    var formattedDescription = HTMLworkDescription.replace("%data%", employmentHistory[key].description);
-    $(".work-entry:last").append(consolidatedEmpoyerPosition).append(formattedDates).append(formattedLocation)
-      .append(formattedDescription);
-  };
-}
-displayWork();
 
 $("#mapDiv").append(googleMap);
