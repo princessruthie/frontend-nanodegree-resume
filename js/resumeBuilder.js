@@ -1,7 +1,3 @@
-/*
-This is empty on purpose! Your code to build the resume will go here.
- */
-
 var inName = function() {
   return (bio.firstName + " " + bio.lastName.toUpperCase());
 };
@@ -162,44 +158,47 @@ work.display();
 
 var projects = {
   "projects": [{
+      "title": "placeholder1",
+      "dates": "2017",
+      "description": "made first stuff",
+      "images": [
+        "images/fry.jpg",
+        "images/fry.jpg"
+      ],
       "skillLearned": "JavaScript",
-      "projectDates": "2017",
-      "projectTitle": "placeholder1",
-      "projectImage": "images/fry.jpg",
-      "projectDescription": "made first stuff"
     },
     {
-      "skillLearned": "html",
-      "projectDates": "2017",
-      "projectTitle": "placeholder2",
-      "projectImage": "images/fry.jpg",
-      "projectDescription": "made stuff"
+      "title": "placeholder2",
+      "dates": "2017",
+      "description": "made first stuff",
+      "images": [
+        "images/fry.jpg",
+        "images/fry.jpg"
+      ],
+      "skillLearned": "JavaScript",
     }
-  ]
-};
+  ],
+  "display": function() {
+    var currentEntry;
+    for (var i = 0; i < projects.projects.length; i++) {
+      $("#projects").append(HTMLprojectStart);
+      currentEntry = $(".project-entry:last");
+      var project = projects.projects[i];
 
-projects.display = function() {
-  for (var i = 0; i < projects.projects.length; i++) {
-    $("#projects").append(HTMLprojectStart);
-    var project = projects.projects[i];
-    var formattedTitle = HTMLprojectTitle.replace("%data%", project.projectTitle);
-    var formattedDates = HTMLprojectDates.replace("%data%", project.projectDates);
-    var formattedDescription = HTMLprojectDescription.replace("%data%", project.projectDescription);
-    var formattedPhotUrl = HTMLprojectImage.replace("%data%", project.projectImage);
-    console.log(project.projectTitle);
+      var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
+      var formattedDates = HTMLprojectDates.replace("%data%", project.dates);
+      var formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
+      console.log(project.title);
 
-    $(".project-entry:last").append(formattedTitle).append(formattedDates)
-      .append(formattedDescription).append(formattedPhotUrl);
+      currentEntry.append(formattedTitle).append(formattedDates)
+        .append(formattedDescription);
+      for (var j = 0; j < project.images.length; j++) {
+        var formattedImageUrl = HTMLprojectImage.replace("%data%", project.images[j]);
+        currentEntry.append(formattedImageUrl);
+      }
+    }
   }
-}
-
-// projects.display = function(){
-//   for(var project in projects.projects){
-//     $("#projects").append(HTMLprojectStart);
-//     var formattedTitle = HTMLprojectTitle.replace("%data%", projects.projects[0]);
-//     $(".project-entry:last").append(formattedTitle);
-//   }
-// }
+};
 
 projects.display();
 
