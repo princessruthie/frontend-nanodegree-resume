@@ -2,28 +2,52 @@
 This is empty on purpose! Your code to build the resume will go here.
  */
 
-// $(document).click(function(loc){
-//
-// });
+ var inName = function(){
+    return (bio.firstName + " " + bio.lastName.toUpperCase());
+  };
 
-var bio = {
-  "firstName": "Princess",
-  "lastName": "Ruthie",
-  "role": "Web Developer",
-  "contacts": {
-  "email":"missruthie@gmail.com",
-  "twitter":"theOnlyRuthie",
-  "github": "princessRuthie",
-  "location": "Philadelphia"},
-  "photoUrl":"images/fry.jpg",
-  "welcomeMessage": "lorem ipsum",
-  "skills": [
-    "awesomeness","RWD","JavaScript"]
-};
+ var bio = {
+   "firstName": "Princess",
+   "lastName" : "Ruthie",
+   "role": "Web Developer",
+   "contacts": {
+     "mobile": "215-555-1234",
+     "email":"missruthie@gmail.com",
+     "github": "princessRuthie",
+     "twitter":"theOnlyRuthie",
+     "location": "Philadelphia"},
+   "welcomeMessage": "lorem ipsum",
+   "bioPic":"images/fry.jpg",
+   "skills": [
+     "awesomeness","RWD","JavaScript"],
+   "display": function(){
+     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+     var formattedName = HTMLheaderName.replace("%data%", inName());
 
-var inName = function(){
-  return (bio.firstName + " " + bio.lastName.toUpperCase());
-}
+     var formattedPhotUrl = HTMLbioPic.replace("%data%", bio.bioPic);
+     var formattedMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+
+     for (var key in bio.contacts){
+         if(bio.contacts.hasOwnProperty(key)){
+           var formattedContact = HTMLcontactGeneric.replace("%contact%", key).replace("%data%", bio.contacts[key]);
+           $("#topContacts").append(formattedContact);
+         }
+       }
+     $("#header").prepend(formattedRole).prepend(formattedName);
+     $("#header").append(formattedMessage);
+     $("#header").append(formattedPhotUrl).append(HTMLskillsStart);
+
+     for (i =0; i<bio.skills.length; i++){
+         var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
+         $("#header").append(formattedSkill);
+       }
+ }}
+
+ bio.display();
+
+
+
+
 
 // if (bio.skills){
 //   $("#header").append(HTMLskillsStart);
@@ -150,25 +174,6 @@ projects.display();
 */
 
 
-var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-var formattedName = HTMLheaderName.replace("%data%", inName());
-
-var formattedPhotUrl = HTMLbioPic.replace("%data%", bio.photoUrl);
-var formattedMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
-
-$("#header").prepend(formattedRole).prepend(formattedName);
-$("#header").append(formattedMessage);
-$("#header").append(formattedPhotUrl).append(HTMLskillsStart);
-
-for (i =0; i<bio.skills.length; i++){
-    var formattedSkill = HTMLskills.replace("%data%", bio.skills[i]);
-    $("#header").append(formattedSkill);
-};
-
-for (var key in bio.contacts){
-  var formattedContact = HTMLcontactGeneric.replace("%contact%", key).replace("%data%", bio.contacts[key]);
-  $("#topContacts").append(formattedContact);
-};
 
 
 function displayWork(){
