@@ -18,11 +18,10 @@ var bio = {
     "awesomeness", "RWD", "JavaScript"
   ],
   "display": function() {
-    var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
-    var formattedName = HTMLheaderName.replace("%data%", inName());
-
-    var formattedPhotUrl = HTMLbioPic.replace("%data%", bio.biopic);
-    var formattedMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
+    var formattedRole = HTMLheaderRole.replace("%data%", bio.role),
+      formattedName = HTMLheaderName.replace("%data%", inName()),
+      formattedPhotUrl = HTMLbioPic.replace("%data%", bio.biopic),
+      formattedMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 
     for (var key in bio.contacts) {
       if (bio.contacts.hasOwnProperty(key)) {
@@ -81,11 +80,11 @@ var education = {
     for (var i = 0; i < education.schools.length; i++) {
       $("#education").append(HTMLschoolStart);
       currentEntry = $(".education-entry:last");
-      var school = education.schools[i];
-      var formattedSchoolName = HTMLschoolName.replace("%data%", school.name);
-      var formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree);
-      var formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates);
-      var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
+      var school = education.schools[i],
+        formattedSchoolName = HTMLschoolName.replace("%data%", school.name),
+        formattedSchoolDegree = HTMLschoolDegree.replace("%data%", school.degree),
+        formattedSchoolDates = HTMLschoolDates.replace("%data%", school.dates),
+        formattedSchoolLocation = HTMLschoolLocation.replace("%data%", school.location);
 
       console.log(formattedSchoolName + formattedSchoolDegree);
       currentEntry.append(
@@ -103,11 +102,12 @@ var education = {
     for (var k = 0; k < education.onlineCourses.length; k++) {
       $("#education").append(HTMLschoolStart);
       currentEntry = $(".education-entry:last");
-      var onlineSchool = education.onlineCourses[k];
-      var formattedOnlineTitle = HTMLonlineTitle.replace("%data%", onlineSchool.title);
-      var formattedOnlineSchool = HTMLonlineSchool.replace("%data%", onlineSchool.school);
-      var formattedOnlineDates = HTMLonlineDates.replace("%data%", onlineSchool.dates);
-      var formattedOnlineURL = HTMLonlineURL.replace("%data%", onlineSchool.url);
+
+      var onlineSchool = education.onlineCourses[k],
+        formattedOnlineTitle = HTMLonlineTitle.replace("%data%", onlineSchool.title),
+        formattedOnlineSchool = HTMLonlineSchool.replace("%data%", onlineSchool.school),
+        formattedOnlineDates = HTMLonlineDates.replace("%data%", onlineSchool.dates),
+        formattedOnlineURL = HTMLonlineURL.replace("%data%", onlineSchool.url);
       currentEntry.append(
         formattedOnlineTitle + formattedOnlineSchool,
         formattedOnlineDates,
@@ -182,11 +182,10 @@ var projects = {
     for (var i = 0; i < projects.projects.length; i++) {
       $("#projects").append(HTMLprojectStart);
       currentEntry = $(".project-entry:last");
-      var project = projects.projects[i];
-
-      var formattedTitle = HTMLprojectTitle.replace("%data%", project.title);
-      var formattedDates = HTMLprojectDates.replace("%data%", project.dates);
-      var formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
+      var project = projects.projects[i],
+       formattedTitle = HTMLprojectTitle.replace("%data%", project.title),
+       formattedDates = HTMLprojectDates.replace("%data%", project.dates),
+       formattedDescription = HTMLprojectDescription.replace("%data%", project.description);
       console.log(project.title);
 
       currentEntry.append(formattedTitle).append(formattedDates)
