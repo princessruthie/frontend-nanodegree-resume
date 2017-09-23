@@ -1,10 +1,9 @@
 var inName = function() {
-  return (bio.firstName + " " + bio.lastName.toUpperCase());
+  return (bio.name);
 };
 
 var bio = {
-  "firstName": "Princess",
-  "lastName": "Ruthie",
+  "name": "Princess Ruthie",
   "role": "Web Developer",
   "contacts": {
     "mobile": "215-555-1234",
@@ -14,7 +13,7 @@ var bio = {
     "location": "Philadelphia"
   },
   "welcomeMessage": "lorem ipsum",
-  "bioPic": "images/fry.jpg",
+  "biopic": "images/fry.jpg",
   "skills": [
     "awesomeness", "RWD", "JavaScript"
   ],
@@ -22,13 +21,13 @@ var bio = {
     var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
     var formattedName = HTMLheaderName.replace("%data%", inName());
 
-    var formattedPhotUrl = HTMLbioPic.replace("%data%", bio.bioPic);
+    var formattedPhotUrl = HTMLbioPic.replace("%data%", bio.biopic);
     var formattedMessage = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 
     for (var key in bio.contacts) {
       if (bio.contacts.hasOwnProperty(key)) {
         var formattedContact = HTMLcontactGeneric.replace("%contact%", key).replace("%data%", bio.contacts[key]);
-        $("#topContacts").append(formattedContact);
+        $("#topContacts,#footerContacts").append(formattedContact);
       }
     }
     $("#header").prepend(formattedRole).prepend(formattedName);
